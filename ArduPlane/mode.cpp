@@ -190,6 +190,17 @@ void Mode::update_target_altitude()
 {
     Location target_location;
 
+
+        // gcs().send_text(MAV_SEVERITY_INFO, "target altitude: %d", plane.next_WP_loc.alt);
+        // gcs().send_text(MAV_SEVERITY_INFO, "home altitude: %d", plane.home.alt);
+        // gcs().send_text(MAV_SEVERITY_INFO, "Difference: %d", plane.next_WP_loc.alt - plane.home.alt);
+
+        if ((plane.next_WP_loc.alt - plane.home.alt) > 12192) {
+            plane.next_WP_loc.alt = (plane.home.alt + 12192);
+            gcs().send_text(MAV_SEVERITY_EMERGENCY, "Next WP above 120m, setting to 120m");
+            return;
+        }
+
     if (plane.landing.is_flaring()) {
         // during a landing flare, use TECS_LAND_SINK as a target sink
         // rate, and ignores the target altitude

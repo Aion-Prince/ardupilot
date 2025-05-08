@@ -5,7 +5,8 @@
 #include <AP_Vehicle/AP_Vehicle_Type.h>
 
 #ifndef AC_FENCE_DUMMY_METHODS_ENABLED
-#define AC_FENCE_DUMMY_METHODS_ENABLED  (!(APM_BUILD_TYPE(APM_BUILD_Rover) | APM_BUILD_COPTER_OR_HELI | APM_BUILD_TYPE(APM_BUILD_ArduPlane) | APM_BUILD_TYPE(APM_BUILD_ArduSub) | (AP_FENCE_ENABLED == 1)))
+#define AC_FENCE_DUMMY_METHODS_ENABLED  0
+// #define AC_FENCE_DUMMY_METHODS_ENABLED  (!(APM_BUILD_TYPE(APM_BUILD_Rover) | APM_BUILD_COPTER_OR_HELI | APM_BUILD_TYPE(APM_BUILD_ArduPlane) | APM_BUILD_TYPE(APM_BUILD_ArduSub) | (AP_FENCE_ENABLED == 1)))
 #endif
 
 #if !AC_FENCE_DUMMY_METHODS_ENABLED
@@ -53,7 +54,7 @@ const AP_Param::GroupInfo AC_Fence::var_info[] = {
     // @Description: Allows you to enable (1) or disable (0) the fence functionality. Fences can still be enabled and disabled via mavlink or an RC option, but these changes are not persisted.
     // @Values: 0:Disabled,1:Enabled
     // @User: Standard
-    AP_GROUPINFO("ENABLE",      0,  AC_Fence,   _enabled,   0),
+    AP_GROUPINFO("ENABLE",      0,  AC_Fence,   _enabled,   1),
 
     // @Param: TYPE
     // @DisplayName: Fence Type
@@ -61,7 +62,7 @@ const AP_Param::GroupInfo AC_Fence::var_info[] = {
     // @Bitmask{Rover}: 1:Circle Centered on Home,2:Inclusion/Exclusion Circles+Polygons
     // @Bitmask{Copter, Plane, Sub}: 0:Max altitude,1:Circle Centered on Home,2:Inclusion/Exclusion Circles+Polygons,3:Min altitude
     // @User: Standard
-    AP_GROUPINFO("TYPE",        1,  AC_Fence,   _configured_fences,  AC_FENCE_TYPE_DEFAULT),
+    AP_GROUPINFO("TYPE",        1,  AC_Fence,   _configured_fences,  3),
 
     // @Param: ACTION
     // @DisplayName: Fence Action

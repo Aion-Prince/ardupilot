@@ -498,6 +498,21 @@ bool AP_Mission::start_command(const Mission_Command& cmd)
 ///     cmd.index is updated with it's new position in the mission
 bool AP_Mission::add_cmd(Mission_Command& cmd)
 {
+
+    // Reject waypoints above 120m AGL
+    if (cmd.id == MAV_CMD_NAV_WAYPOINT ||
+        cmd.id == MAV_CMD_NAV_LOITER_TIME ||
+        cmd.id == MAV_CMD_NAV_LOITER_TURNS ||
+        cmd.id == MAV_CMD_NAV_LOITER_UNLIM ||
+        cmd.id == MAV_CMD_NAV_TAKEOFF) {
+         // Altitude is in centimeters in the Location structure (int32_t)
+         float alt_meters = cmd.content.location.alt * 0.01f;
+
+         if (alt_meters > 120.0f) {
+             gcs().send_text(MAV_SEVERITY_ERROR, "Mission rejected: Altitude exceeds 120m AGL");
+             return false;  // This aborts the mission upload
+         }
+    }
     // Add home if its not already present
     if (_cmd_total < 1) {
         write_home_to_storage();

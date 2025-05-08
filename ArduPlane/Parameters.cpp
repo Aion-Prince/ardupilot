@@ -532,7 +532,7 @@ const AP_Param::Info Plane::var_info[] = {
     // @Range: 0 90
     // @Increment: 1
     // @User: Standard
-    ASCALAR(roll_limit,          "ROLL_LIMIT_DEG",    ROLL_LIMIT_DEG),
+    ASCALAR(roll_limit,          "ROLL_LIMIT_DEG",    60),
 
     // @Param: PTCH_LIM_MAX_DEG
     // @DisplayName: Maximum Pitch Angle
@@ -541,7 +541,7 @@ const AP_Param::Info Plane::var_info[] = {
     // @Range: 0 90
     // @Increment: 1
     // @User: Standard
-    ASCALAR(pitch_limit_max,     "PTCH_LIM_MAX_DEG",  PITCH_MAX),
+    ASCALAR(pitch_limit_max,     "PTCH_LIM_MAX_DEG",  12),
 
     // @Param: PTCH_LIM_MIN_DEG
     // @DisplayName: Minimum Pitch Angle
@@ -550,7 +550,7 @@ const AP_Param::Info Plane::var_info[] = {
     // @Range: -90 0
     // @Increment: 1
     // @User: Standard
-    ASCALAR(pitch_limit_min,     "PTCH_LIM_MIN_DEG",  PITCH_MIN),
+    ASCALAR(pitch_limit_min,     "PTCH_LIM_MIN_DEG",  -10),
 
     // @Param: ACRO_ROLL_RATE
     // @DisplayName: ACRO mode roll rate

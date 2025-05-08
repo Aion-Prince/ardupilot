@@ -9,7 +9,7 @@
 // Enabled 2 is enabled with dummy methods for tracker and blimp
 
 #ifndef AP_FENCE_ENABLED
-#define AP_FENCE_ENABLED 2
+#define AP_FENCE_ENABLED 1
 #endif
 
 // CODE_REMOVAL

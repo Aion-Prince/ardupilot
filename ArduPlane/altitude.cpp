@@ -208,10 +208,29 @@ void Plane::set_target_altitude_current(void)
  */
 void Plane::set_target_altitude_location(const Location &loc)
 {
+
+    
+    // if ((loc.alt - home.alt) > 12192) {
+    //     gcs().send_text(MAV_SEVERITY_INFO, "target altitude: %d", loc.alt);
+    //     gcs().send_text(MAV_SEVERITY_INFO, "home altitude: %d", home.alt);
+    //     gcs().send_text(MAV_SEVERITY_INFO, "Difference: %d", loc.alt - home.alt);
+    //     target_altitude.amsl_cm = 12192;
+    //     if (loc.relative_alt) {
+    //         target_altitude.amsl_cm += home.alt;
+    //     }
+    // } else {
+    //     target_altitude.amsl_cm = loc.alt;
+    //     if (loc.relative_alt) {
+    //         target_altitude.amsl_cm += home.alt;
+    //     }
+    // }
+
     target_altitude.amsl_cm = loc.alt;
-    if (loc.relative_alt) {
-        target_altitude.amsl_cm += home.alt;
-    }
+        if (loc.relative_alt) {
+            target_altitude.amsl_cm += home.alt;
+        }
+
+
 #if AP_TERRAIN_AVAILABLE
     if (target_altitude.terrain_following_pending) {
         /* we didn't get terrain data to init when we started on this
